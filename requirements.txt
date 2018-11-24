@@ -1,5 +1,0 @@
-mysqlclient
-kayvee
-requests==2.18.4
-PyYAML==3.12
-tornado==5.0.2
