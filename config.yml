@@ -1,0 +1,8 @@
+mysql:
+  host: localhost
+  user: monitor
+  port: 3306
+  password: 'monitor'
+  db: test
+proxy:
+  status: ['OFFLINE_SOFT', 'OFFLINE_HARD', 'ONLINE']

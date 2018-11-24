@@ -1,0 +1,47 @@
+Goal:
+
+    Being able to send instruction to the ProxySql.
+
+Constraints:
+
+    There is three parameters only that can be sent on the post:
+        ++ ['OFFLINE_SOFT', 'OFFLINE_HARD', 'ONLINE'] , any other parameter sent will be rejected.
+        ++ Server status must be different from its current status.
+        ++ Parameters to be sent in the post command: {"status":"OFFLINE_HARD", "hostname":"localhost"}
+
+
+List of parameters required:
+
+    mysql:
+      host: localhost
+      user: monitor
+      port: 3306
+      password: 'monitor'
+      db: test
+    proxy:
+      status: ['OFFLINE_SOFT', 'OFFLINE_HARD', 'ONLINE']
+
+Other parameters:
+
+    +   Log file:  /tmp/proxysqlapi.log
+    +   listening port: 8838
+
+
+How to:
+
+    +   curl -d '{"status":"OFFLINE_HARD", "hostname":"localhost"}' -X POST http://localhost:8838/status/
+
+    log file example:
+
+        ...
+        INFO:root:{"source":"ProxyManager","level":"info","title":"change_instance","context":
+        "Update successfully new status: OFFLINE_HARD","time":"2018-10-29 23:52:24.265214"}
+        ...
+
+    +   curl http://localhost:8838/status/localhost
+
+        ...
+        INFO:root:{"source":"StatusHandler","level":"info","title":"get","context":"Checking instance:
+        OFFLINE_HARD","time":"2018-10-30 00:03:29.060184"}
+        INFO:tornado.access:200 GET /status/localhost (::1) 40.37ms
+        ...
